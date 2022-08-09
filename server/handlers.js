@@ -55,4 +55,9 @@ const deleteWine = async (req, res) => {
   client.close();
 };
 
-module.exports = { WineInput, deleteWine };
+const getAllWines = async (req, res) => {
+  const result = await getAllWines();
+  res.status(200).json({ status: 200, data: result.items });
+};
+
+module.exports = { WineInput, deleteWine, getAllWines };

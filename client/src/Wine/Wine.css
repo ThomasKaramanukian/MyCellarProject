@@ -32,10 +32,10 @@ form button {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-form button:hover {
+/* form button:hover {
   background: #ff6f47;
   color: white;
-}
+} */
 .todo-container {
   display: flex;
   justify-content: center;
@@ -93,7 +93,6 @@ form button:hover {
   border: 1px solid darkred;
 }
 
-/*CUSTOM SELECTOR */
 select {
   -webkit-appearance: none;
   -moz-appearance: none;

@@ -3,7 +3,9 @@ import "./Wine.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
 import styled from "styled-components";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, User } from "@auth0/auth0-react";
+import LogoutButton from "../Logout";
+import UserIcon from "./UserIcon";
 
 const { v4: uuidv4 } = require("uuid");
 const WineInput = ({ wines, setWines, setStatus }) => {
@@ -61,6 +63,8 @@ const WineInput = ({ wines, setWines, setStatus }) => {
 
   return (
     <>
+      <UserIcon />
+      <LogoutButton />
       <form>
         <InputContainer>
           <Input
@@ -104,6 +108,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
           />
           <Selector>
             <select
+              className="filter-todo"
               onChange={(e) => {
                 setWineInput({ ...wineInput, type: e.target.value });
               }}

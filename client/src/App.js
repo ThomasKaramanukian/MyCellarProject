@@ -4,6 +4,7 @@ import Homepage from "./Homepage";
 import Profile from "./Profile";
 import Wine from "./Wine/Wine";
 import PostTest from "./postTest";
+import AllWines from "./Wine/AllWines";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/wine" element={<Wine />} />
+          <Route exact path="/allwines" element={<AllWines />} />
           <Route exact path="/test" element={<PostTest />} />
         </Routes>
       </Router>
