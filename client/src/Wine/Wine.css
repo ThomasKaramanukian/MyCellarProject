@@ -38,12 +38,13 @@ form button:hover {
 }
 .todo-container {
   display: flex;
+  border: 1px solid darkred;
   justify-content: center;
   align-items: center;
 }
 
 .todo-list {
-  min-width: 30%;
+  min-width: 80%;
   list-style: none;
 }
 
@@ -90,9 +91,8 @@ form button:hover {
   opacity: 0;
 }
 
-.completed {
-  text-decoration: line-through;
-  opacity: 0.5;
+.opened {
+  text-decoration: 2px solid underline darkred;
 }
 
 /*CUSTOM SELECTOR */

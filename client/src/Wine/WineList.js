@@ -1,16 +1,17 @@
 import React from "react";
 import Wines from "./Wines";
 
-const WineList = ({ wines, setWines }) => {
+const WineList = ({ wines, setWines, filteredWines }) => {
   console.log(wines);
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        {wines.map((wine) => (
+        {filteredWines.map((wine) => (
           <Wines
             key={wine.id}
             text={wine.text}
             setWines={setWines}
+            wine={wine}
             wines={wines}
           />
         ))}

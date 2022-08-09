@@ -1,20 +1,35 @@
 import React from "react";
-import { AiTwotoneDollar } from "react-icons/ai";
-import { BiWine } from "react-icons/bi";
+import { BiTrash } from "react-icons/bi";
 import { FaWineBottle } from "react-icons/fa";
 
 const Wines = ({ text, wine, wines, setWines }) => {
-  const openWineHandler = () => {
+  const deleteWineHandler = () => {
     setWines(wines.filter((el) => el.id !== wine.id));
   };
+  const openedWineHandler = () => {
+    setWines(
+      wines.map((item) => {
+        if (item.id === wine.id) {
+          return {
+            ...item,
+            opened: !item.opened,
+          };
+        }
+        return item;
+      })
+    );
+  };
+
   return (
     <div className="todo">
-      <li className="todo-item">{text}</li>
-      <button className="complete-btn">
+      <li className={`todo-item ${wine.opened ? "opened" : ""}`}>{text}</li>
+      <button onClick={openedWineHandler} className="complete-btn">
         <FaWineBottle />
       </button>
-      <button onClick={openWineHandler} className="trash-btn">
-        <BiWine />
+      <button onClick={deleteWineHandler} className="trash-btn">
+        <i className="fas fa-trash">
+          <BiTrash />
+        </i>
       </button>
     </div>
   );

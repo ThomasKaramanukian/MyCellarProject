@@ -1,21 +1,39 @@
 import React from "react";
-import "./AddWine.css";
+import "./Wine.css";
 import { AiOutlinePlus } from "react-icons/ai";
+import { useState } from "react";
 
-const WineInput = ({ setWineInput, wines, setWines, wineInput }) => {
+const WineInput = ({ setWineInput, wines, setWines, wineInput, setStatus }) => {
+  const [value, setValue] = useState("");
   const wineInputHandler = (e) => {
-    console.log(e.target.value);
     setWineInput(e.target.value);
   };
   const submitWineHandler = (e) => {
     e.preventDefault();
-    console.log(wineInput);
-    setWines([
-      ...wines,
-      { text: wineInput, opened: false, id: Math.random() * 1000 },
-    ]);
-    setWineInput("");
+    fetch("/api/addwine", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: wineInput,
+      }),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        setValue("");
+        setWineInput("");
+        setWines([
+          ...wines,
+          { text: wineInput, opened: false, id: Math.random() * 1000 },
+        ]);
+      });
   };
+
+  const statusHandler = (e) => {
+    setStatus(e.target.value);
+  };
+
   return (
     <>
       <form>
@@ -34,10 +52,10 @@ const WineInput = ({ setWineInput, wines, setWines, wineInput }) => {
           <AiOutlinePlus />
         </button>
         <div className="select">
-          <select name="todos" className="filter-todo">
+          <select onChange={statusHandler} name="todos" className="filter-todo">
             <option value="all">All</option>
-            <option value="completed">Opened</option>
-            <option value="all">Cellared</option>
+            <option value="opened">Opened</option>
+            <option value="cellared">Cellared</option>
           </select>
         </div>
       </form>

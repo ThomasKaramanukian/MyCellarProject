@@ -10,22 +10,26 @@ const options = {
 
 const dbName = "MyCellar";
 
-const test = async (req, res) => {
+const WineInput = async (req, res) => {
+  console.log(req.body);
   const client = new MongoClient(MONGO_URI, options);
-  console.log(MONGO_URI);
-
   try {
     await client.connect();
-    const db = client.db("MyCellar");
     console.log("connected");
-
-    return res.status(200).json({ status: 200, message: "You have arrived" });
+    const db = client.db("MyCellar");
+    const result = await db.collection("Wines").insertOne(req.body);
+    console.log(result);
+    if (result.acknowledged > 0) {
+      return res.status(201).json({ status: 201, data: req.body });
+    } else {
+      return res.status(400).json({ status: 400, message: "Couldnt add wine" });
+    }
   } catch (err) {
-    console.log(err);
-  } finally {
-    await client.close();
-    console.log("disconnected");
+    console.log(err.stack);
+    res.status(500).json({ status: 500, data: req.body, message: err.stack });
   }
+
+  client.close();
 };
 
-module.exports = { test };
+module.exports = { WineInput };
