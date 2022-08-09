@@ -4,7 +4,7 @@ const express = require("express");
 const morgan = require("morgan");
 const PORT = 8000;
 
-const { WineInput } = require("./handlers");
+const { WineInput, deleteWine } = require("./handlers");
 
 express()
   .use(morgan("tiny"))
@@ -14,6 +14,7 @@ express()
   })
 
   .post("/api/addwine", WineInput)
+  .delete("/api/deletewine", deleteWine)
 
   .listen(PORT, () => {
     `Listening on port ${PORT}`;

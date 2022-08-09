@@ -5,7 +5,7 @@ import WineList from "./WineList";
 import { useState, useEffect } from "react";
 
 const Wine = () => {
-  const [wineInput, setWineInput] = useState("");
+  // const [wineInput, setWineInput] = useState("");
   const [wines, setWines] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredWines, setFilteredWines] = useState([]);
@@ -36,8 +36,8 @@ const Wine = () => {
       <WineInput
         wines={wines}
         setWines={setWines}
-        wineInput={wineInput}
-        setWineInput={setWineInput}
+        // wineInput={wineInput}
+        // setWineInput={setWineInput}
         setStatus={setStatus}
       />
       <WineList

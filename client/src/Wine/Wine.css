@@ -38,7 +38,6 @@ form button:hover {
 }
 .todo-container {
   display: flex;
-  border: 1px solid darkred;
   justify-content: center;
   align-items: center;
 }
@@ -81,11 +80,6 @@ form button:hover {
   padding: 0rem 0.5rem;
 }
 
-.fa-trash,
-.fa-check {
-  pointer-events: none;
-}
-
 .fall {
   transform: translateY(10rem) rotateZ(20deg);
   opacity: 0;
@@ -93,6 +87,10 @@ form button:hover {
 
 .opened {
   text-decoration: 2px solid underline darkred;
+}
+
+.wine-input {
+  border: 1px solid darkred;
 }
 
 /*CUSTOM SELECTOR */

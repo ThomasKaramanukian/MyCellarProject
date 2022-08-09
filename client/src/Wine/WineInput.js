@@ -2,32 +2,57 @@ import React from "react";
 import "./Wine.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
+import styled from "styled-components";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const WineInput = ({ setWineInput, wines, setWines, wineInput, setStatus }) => {
-  const [value, setValue] = useState("");
-  const wineInputHandler = (e) => {
-    setWineInput(e.target.value);
-  };
+const { v4: uuidv4 } = require("uuid");
+const WineInput = ({ wines, setWines, setStatus }) => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [wineInput, setWineInput] = useState({
+    name: "",
+    year: "",
+    country: "",
+    region: "",
+    type: "",
+  });
   const submitWineHandler = (e) => {
     e.preventDefault();
-    fetch("/api/addwine", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        status: wineInput,
-      }),
-    })
-      .then((res) => res.json())
-      .then((response) => {
-        setValue("");
-        setWineInput("");
-        setWines([
-          ...wines,
-          { text: wineInput, opened: false, id: Math.random() * 1000 },
-        ]);
-      });
+    if (
+      wineInput.name === "" ||
+      wineInput.year === "" ||
+      wineInput.country === "" ||
+      wineInput.region === "" ||
+      wineInput.type === ""
+    ) {
+      window.alert("Missing information");
+    } else {
+      const newWine = {
+        text: wineInput,
+        opened: false,
+        id: uuidv4(),
+        user: user.email,
+      };
+      fetch("/api/addwine", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          status: newWine,
+        }),
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          setWineInput({
+            name: "",
+            year: "",
+            country: "",
+            region: "",
+            type: "",
+          });
+          setWines([...wines, newWine]);
+        });
+    }
   };
 
   const statusHandler = (e) => {
@@ -37,13 +62,63 @@ const WineInput = ({ setWineInput, wines, setWines, wineInput, setStatus }) => {
   return (
     <>
       <form>
-        <input
-          value={wineInput}
-          onChange={wineInputHandler}
-          type="text"
-          placeholder="Wine"
-          className="todo-input"
-        />
+        <InputContainer>
+          <Input
+            value={wineInput.name}
+            onChange={(e) => {
+              setWineInput({ ...wineInput, name: e.target.value });
+            }}
+            type="text"
+            placeholder="Name of the wine"
+            className="wine-input"
+          />
+          <Input
+            value={wineInput.year}
+            onChange={(e) => {
+              setWineInput({ ...wineInput, year: e.target.value });
+            }}
+            type="text"
+            maxLength="4"
+            minLength="4"
+            pattern="\d{4}"
+            placeholder="Year"
+            className="year-input"
+          />
+          <Input
+            onChange={(e) => {
+              setWineInput({ ...wineInput, country: e.target.value });
+            }}
+            value={wineInput.country}
+            type="text"
+            placeholder="Country"
+            className="country-input"
+          />
+          <Input
+            onChange={(e) => {
+              setWineInput({ ...wineInput, region: e.target.value });
+            }}
+            value={wineInput.region}
+            type="text"
+            placeholder="Region"
+            className="region-input"
+          />
+          <Selector>
+            <select
+              onChange={(e) => {
+                setWineInput({ ...wineInput, type: e.target.value });
+              }}
+            >
+              <option value="type" selected disabled>
+                Type
+              </option>
+              <option value="red">Red</option>
+              <option value="white">White</option>
+              <option value="rose">Rose</option>
+              <option value="orange">Orange</option>
+              <option value="sparkling">Sparkling</option>
+            </select>
+          </Selector>
+        </InputContainer>
         <button
           onClick={submitWineHandler}
           className="todo-button"
@@ -62,5 +137,18 @@ const WineInput = ({ setWineInput, wines, setWines, wineInput, setStatus }) => {
     </>
   );
 };
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  margin-top: 10px;
+`;
+
+const Selector = styled.span`
+  margin-top: 10px;
+`;
 
 export default WineInput;
