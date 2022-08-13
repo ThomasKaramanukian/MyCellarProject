@@ -15,13 +15,14 @@ const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   console.log(user);
   if (isLoading) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <>
       <Wrapper>
         <LogoutButton />
+        {/* <img src={user.picture} /> */}
         <div>Hello {user.nickname}</div>
         <button onClick={MyWines}>My Wines</button>
         <button onClick={AllWines}>All Wines</button>

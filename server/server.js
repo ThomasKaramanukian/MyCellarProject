@@ -4,7 +4,15 @@ const express = require("express");
 const morgan = require("morgan");
 const PORT = 8000;
 
-const { WineInput, deleteWine, getAllWines } = require("./handlers");
+const {
+  WineInput,
+  deleteWine,
+  getAllWines,
+  addUser,
+  checkUser,
+  addReview,
+  getOtherUserProfile,
+} = require("./handlers");
 
 express()
   .use(morgan("tiny"))
@@ -16,6 +24,12 @@ express()
   .post("/api/addwine", WineInput)
   .delete("/api/deletewine", deleteWine)
   .get("/api/allwines", getAllWines)
+  .post("/api/adduser", addUser)
+  .post("/api/user", checkUser)
+  .post("/api/addreview/", addReview)
+  .get("/api/userprofile/:_id", getOtherUserProfile)
+
+  // .get("/api/profile/:user", getProfile)
 
   .listen(PORT, () => {
     `Listening on port ${PORT}`;

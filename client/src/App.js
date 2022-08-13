@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Homepage from "./Homepage";
 import Profile from "./Profile";
-import Wine from "./Wine/Wine";
-import PostTest from "./postTest";
+import OwnedWines from "./Wine/OwnedWines";
 import AllWines from "./Wine/AllWines";
+import Review from "./Review/Review";
+import OtherUserProfile from "./OtherUserProfile";
 
 const App = () => {
   return (
@@ -13,9 +14,14 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/wine" element={<Wine />} />
+          <Route exact path="/wine" element={<OwnedWines />} />
           <Route exact path="/allwines" element={<AllWines />} />
-          <Route exact path="/test" element={<PostTest />} />
+          <Route exact path="/review/:wineId" element={<Review />} />
+          <Route
+            exact
+            path="/userprofile/:_id"
+            element={<OtherUserProfile />}
+          />
         </Routes>
       </Router>
     </>

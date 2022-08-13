@@ -1,24 +1,138 @@
-// import React from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import { useNavigate } from "react-router-dom";
-// import styled from "styled-components";
+import React from "react";
+import styled from "styled-components";
+import UserIcon from "./UserIcon";
+import LogoutButton from "../Logout";
+import { useState, useEffect } from "react";
+import { BiUser } from "react-icons/bi";
+import { Link } from "react-router-dom";
+import { AiOutlineInfoCircle, AiOutlineHeart } from "react-icons/ai";
+import Popup from "reactjs-popup";
 
-// const AllWines = () => {
-//   const [allWines, setAllWines] = useState(null);
-//   const [hasLoaded, setHasLoaded] = useState(false);
+const AllWines = () => {
+  const [allWines, setAllWines] = useState(null);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [open, setOpen] = useState(false);
 
-//   useEffect(() => {
-//     fetch("/api/allwines")
-//       .then((res) => {
-//         return res.json();
-//       })
-//       .then((data) => {
-//         setAllWines(data.data);
-//         setHasLoaded(true);
-//       })
-//       .catch((error) => console.log(error));
-//   }, []);
-//   console.log(allWines);
-// };
+  useEffect(() => {
+    fetch("/api/allwines")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setAllWines(data.data);
+        setHasLoaded(true);
+        console.log(data.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  console.log(allWines);
 
-// export default AllWines;
+  if (!hasLoaded) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <>
+      <UserIcon />
+      <LogoutButton />
+      <Container>
+        <Wrapper>
+          <div>
+            {allWines.map((wine, index) => {
+              console.log(wine);
+              return (
+                <Wines>
+                  <ul style={{ textTransform: "capitalize" }}>
+                    {wine.status.text.name}, {wine.status.text.year}.{" "}
+                    {wine.status.text.country}, {wine.status.text.region} -{" "}
+                    {wine.status.text.type} wine{" "}
+                    <WishList>
+                      <AiOutlineHeart />
+                    </WishList>
+                    <Icon to={`/profile`}>
+                      <BiUser />
+                    </Icon>
+                    <PopupContainer>
+                      <Popup
+                        trigger={
+                          <Info>
+                            <button style={{ all: "unset", cursor: "pointer" }}>
+                              <AiOutlineInfoCircle />
+                            </button>
+                          </Info>
+                        }
+                        position="center"
+                      >
+                        <PopInfo>
+                          {wine.status.text.review}
+                          <button>X</button>
+                        </PopInfo>
+                      </Popup>
+                    </PopupContainer>
+                  </ul>
+                </Wines>
+              );
+            })}
+          </div>
+        </Wrapper>
+      </Container>
+    </>
+  );
+};
+
+const Container = styled.div`
+  margin-top: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Icon = styled(Link)`
+  float: right;
+  margin-right: 5px;
+  color: black;
+`;
+
+const Info = styled.span`
+  float: right;
+  margin-right: 5px;
+  color: black;
+`;
+
+const PopInfo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 300px;
+  background-color: darkgreen;
+  color: white;
+  height: 300px;
+  width: 500px;
+`;
+
+const PopupContainer = styled.span``;
+
+const WishList = styled.span`
+  float: right;
+  margin-right: 5px;
+  color: black;
+  cursor: pointer;
+`;
+
+const Wrapper = styled.div`
+  font-size: 1.2rem;
+  color: black;
+  padding-left: 15px;
+  width: 80%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+`;
+
+const Wines = styled.div`
+  margin-top: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 5px; ;
+`;
+
+export default AllWines;
