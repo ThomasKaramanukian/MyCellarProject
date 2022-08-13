@@ -17,9 +17,9 @@ const Wine = () => {
   const filterHandler = () => {
     switch (status) {
       case "opened":
-        return usersWine.filter((wine) => wine.status.opened === true);
+        return usersWine.filter((wine) => wine.text.opened === true);
       case "cellared":
-        return usersWine.filter((wine) => wine.status.opened === false);
+        return usersWine.filter((wine) => wine.text.opened === false);
       default:
         return usersWine;
     }
@@ -31,7 +31,7 @@ const Wine = () => {
         .then((res) => res.json())
         .then((data) => {
           const usersWine = data.data.filter(
-            (wine) => wine.status.user === user.email
+            (wine) => wine.user === user.email
           );
           setHasLoaded(true);
           setAllWines(allWines);

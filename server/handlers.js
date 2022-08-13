@@ -126,6 +126,25 @@ const checkUser = async (req, res) => {
   }
 };
 
+const getAllProfiles = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  try {
+    await client.connect();
+    const db = client.db("MyCellar");
+    const result = await db.collection("Profiles").find().toArray();
+    if (result.length > 0) {
+      return res.status(200).json({ status: 200, data: result });
+    } else {
+      return res.status(404).json({ status: 404 });
+    }
+  } catch (err) {
+    console.log(err.stack);
+    res.status(500).json({ status: 500, data: req.body, message: err.stack });
+  } finally {
+    client.close();
+  }
+};
+
 const addReview = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const { id, review } = req.body;
@@ -181,4 +200,5 @@ module.exports = {
   checkUser,
   addReview,
   getOtherUserProfile,
+  getAllProfiles,
 };

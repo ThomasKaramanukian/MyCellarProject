@@ -43,9 +43,8 @@ const AllWines = () => {
               return (
                 <Wines>
                   <ul style={{ textTransform: "capitalize" }}>
-                    {wine.status.text.name}, {wine.status.text.year}.{" "}
-                    {wine.status.text.country}, {wine.status.text.region} -{" "}
-                    {wine.status.text.type} wine{" "}
+                    {wine.text.name}, {wine.text.year}. {wine.text.country},{" "}
+                    {wine.text.region} - {wine.text.type} wine{" "}
                     <WishList>
                       <AiOutlineHeart />
                     </WishList>
@@ -64,7 +63,7 @@ const AllWines = () => {
                         position="center"
                       >
                         <PopInfo>
-                          {wine.status.text.review}
+                          {wine.text.review}
                           <button>X</button>
                         </PopInfo>
                       </Popup>

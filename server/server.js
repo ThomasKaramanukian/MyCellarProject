@@ -12,6 +12,7 @@ const {
   checkUser,
   addReview,
   getOtherUserProfile,
+  getAllProfiles,
 } = require("./handlers");
 
 express()
@@ -24,10 +25,11 @@ express()
   .post("/api/addwine", WineInput)
   .delete("/api/deletewine", deleteWine)
   .get("/api/allwines", getAllWines)
+  .get("/api/allprofiles", getAllProfiles)
   .post("/api/adduser", addUser)
   .post("/api/user", checkUser)
   .post("/api/addreview/", addReview)
-  .get("/api/userprofile/:_id", getOtherUserProfile)
+  // .get("/api/userprofile/:_id", getOtherUserProfile)
 
   // .get("/api/profile/:user", getProfile)
 

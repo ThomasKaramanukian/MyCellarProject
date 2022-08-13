@@ -42,7 +42,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          status: newWine,
+          newWine,
           email: user.email,
         }),
       })

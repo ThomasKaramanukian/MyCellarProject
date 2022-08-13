@@ -24,13 +24,13 @@ const WineList = ({
           <ul style={{ textTransform: "capitalize" }} className="wine-list">
             {filteredWines.map((wine) => (
               <Wines
-                text={wine.status.text}
+                text={wine.text}
                 setWines={setWines}
                 wine={wine}
                 wines={wines}
                 setUsersWine={setUsersWine}
                 usersWine={usersWine}
-                wineId={wine.status.id}
+                wineId={wine.id}
               />
             ))}
           </ul>

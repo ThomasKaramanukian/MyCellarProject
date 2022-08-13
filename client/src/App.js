@@ -5,7 +5,9 @@ import Profile from "./Profile";
 import OwnedWines from "./Wine/OwnedWines";
 import AllWines from "./Wine/AllWines";
 import Review from "./Review/Review";
-import OtherUserProfile from "./OtherUserProfile";
+import OtherProfile from "./OtherProfile";
+import AllProfiles from "./AllProfiles";
+import WinePairing from "./WinePairing";
 
 const App = () => {
   return (
@@ -17,11 +19,9 @@ const App = () => {
           <Route exact path="/wine" element={<OwnedWines />} />
           <Route exact path="/allwines" element={<AllWines />} />
           <Route exact path="/review/:wineId" element={<Review />} />
-          <Route
-            exact
-            path="/userprofile/:_id"
-            element={<OtherUserProfile />}
-          />
+          <Route exact path="/userprofile/:_id" element={<OtherProfile />} />
+          <Route exact path="/allprofiles" element={<AllProfiles />} />
+          <Route exact path="/winepairing" element={<WinePairing />} />
         </Routes>
       </Router>
     </>

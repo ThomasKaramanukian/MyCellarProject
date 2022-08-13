@@ -9,7 +9,7 @@ const PostTest = () => {
     fetch("/api/test", {
       method: "POST",
       body: JSON.stringify({
-        status: value,
+        value,
       }),
       headers: {
         "Content-Type": "application/json",

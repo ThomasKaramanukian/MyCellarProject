@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./Logout";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import WinePairing from "./WinePairing";
 
 const Profile = () => {
   let navigate = useNavigate();
@@ -26,6 +27,7 @@ const Profile = () => {
         <div>Hello {user.nickname}</div>
         <button onClick={MyWines}>My Wines</button>
         <button onClick={AllWines}>All Wines</button>
+        <WinePairing />
       </Wrapper>
     </>
   );

@@ -21,7 +21,7 @@ const Wines = ({ text, wine, wineId }) => {
   //     })
   //     .catch((error) => console.log(error));
   // }, []);
-  console.log(wineId);
+  console.log(text);
   return (
     <List>
       <div className="todo">
