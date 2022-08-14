@@ -3,7 +3,7 @@ import Wines from "./Wines";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 
-const WineList = ({
+const MyWines = ({
   wines,
   setWines,
   filteredWines,
@@ -40,4 +40,4 @@ const WineList = ({
   );
 };
 
-export default WineList;
+export default MyWines;

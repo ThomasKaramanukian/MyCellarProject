@@ -16,6 +16,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
     country: "",
     region: "",
     type: "",
+    varietal: "",
     review: "",
     opened: false,
   });
@@ -26,6 +27,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
       wineInput.year === "" ||
       wineInput.country === "" ||
       wineInput.region === "" ||
+      wineInput.varietal === "" ||
       wineInput.type === ""
     ) {
       window.alert("Missing information");
@@ -55,6 +57,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
             region: "",
             type: "",
             review: "",
+            varietal: "",
             opened: false,
           });
           setWines([...wines, newWine]);
@@ -70,8 +73,8 @@ const WineInput = ({ wines, setWines, setStatus }) => {
     <>
       <UserIcon />
       <LogoutButton />
-      <Title>Add a Wine</Title>
       <Wrapper>
+        <Title>Store your Wine</Title>
         <form>
           <InputContainer>
             <Input
@@ -111,6 +114,15 @@ const WineInput = ({ wines, setWines, setStatus }) => {
               value={wineInput.region}
               type="text"
               placeholder="Region"
+              className="wine-input"
+            />
+            <Input
+              onChange={(e) => {
+                setWineInput({ ...wineInput, varietal: e.target.value });
+              }}
+              value={wineInput.varietal}
+              type="text"
+              placeholder="Varietal"
               className="wine-input"
             />
             <Flexbox>
@@ -165,6 +177,8 @@ const InputContainer = styled.div`
 
 const Input = styled.input`
   margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid darkred;
 `;
 
 const Flexbox = styled.div`
@@ -174,18 +188,18 @@ const Flexbox = styled.div`
   margin-top: 10px;
 `;
 
-const Selector = styled.span``;
-
-const Selector2 = styled.span`
-  margin-top: 130px;
+const Selector = styled.span`
+  border-radius: 5px;
+  border: 1px solid darkred;
 `;
 
-const Title = styled.h3`
-  position: absolute;
-  top: 100;
-  left: 50;
-  font-size: 20px;
-  text-decoration: underline;
+// const Selector2 = styled.span`
+//   margin-top: 130px;
+// `;
+
+const Title = styled.div`
+  text-align: center;
+  font-size: 30px;
   font-family: "Poppins", sans-serif;
 `;
 

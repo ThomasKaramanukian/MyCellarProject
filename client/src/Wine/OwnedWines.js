@@ -1,10 +1,11 @@
 import React from "react";
 import "./Wine.css";
 import WineInput from "./WineInput";
-import WineList from "./WineList";
+import MyWines from "./MyWines";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import image from "../Assets/mockaroon.jpg";
 
 const Wine = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -50,11 +51,11 @@ const Wine = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper style={{ backgroundImage: `url(${image})` }}>
         <WineInput wines={wines} setWines={setWines} setStatus={setStatus} />
       </Wrapper>
       <List>
-        <WineList
+        <MyWines
           setWines={setWines}
           wines={wines}
           filteredWines={filteredWines}
@@ -67,10 +68,13 @@ const Wine = () => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 150px;
   display: flex;
-  margin-left: 100px;
-  height: 30vh;
+  justify-content: center;
+  align-items: center;
+  background: no-repeat center/cover;
+  background-color: grey;
+  height: 100vh;
+  width: 100%;
 `;
 
 const List = styled.div`

@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import image1 from "./Assets/jadon-barnes.jpg";
-import image2 from "./Assets/mockaroon.jpg";
 
 const Homepage = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -19,25 +18,14 @@ const Homepage = () => {
   return (
     <>
       <LoginButton />
-      <Wrapper1 style={{ backgroundImage: `url(${image1})` }}>
+      <Wrapper style={{ backgroundImage: `url(${image1})` }}>
         <h1 style={{ color: "white" }}>My Cellar</h1>
-      </Wrapper1>
-      <Wrapper2 style={{ backgroundImage: `url(${image2})` }}></Wrapper2>
+      </Wrapper>
     </>
   );
 };
 
-const Wrapper1 = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: no-repeat center/cover;
-  background-color: grey;
-  height: 100vh;
-  width: 100%;
-`;
-
-const Wrapper2 = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

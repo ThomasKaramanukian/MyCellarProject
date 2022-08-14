@@ -8,6 +8,7 @@ import Review from "./Review/Review";
 import OtherProfile from "./OtherProfile";
 import AllProfiles from "./AllProfiles";
 import WinePairing from "./WinePairing";
+import MyWines from "./Wine/MyWines";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route exact path="/userprofile/:_id" element={<OtherProfile />} />
           <Route exact path="/allprofiles" element={<AllProfiles />} />
           <Route exact path="/winepairing" element={<WinePairing />} />
+          <Route exact path="/mywines" element={<MyWines />} />
         </Routes>
       </Router>
     </>
