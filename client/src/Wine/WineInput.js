@@ -1,11 +1,13 @@
 import React from "react";
 import "./Wine.css";
-import { AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
 import styled from "styled-components";
 import { useAuth0, User } from "@auth0/auth0-react";
 import LogoutButton from "../Logout";
 import UserIcon from "./UserIcon";
+import image from "../Assets/mockaroon.jpg";
+import CellarButton from "./CellarButton";
+import WishListButton from "../WishList/WishListButton";
 
 const { v4: uuidv4 } = require("uuid");
 const WineInput = ({ wines, setWines, setStatus }) => {
@@ -19,6 +21,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
     varietal: "",
     review: "",
     opened: false,
+    isLiked: false,
   });
   const submitWineHandler = (e) => {
     e.preventDefault();
@@ -27,14 +30,12 @@ const WineInput = ({ wines, setWines, setStatus }) => {
       wineInput.year === "" ||
       wineInput.country === "" ||
       wineInput.region === "" ||
-      wineInput.varietal === "" ||
       wineInput.type === ""
     ) {
       window.alert("Missing information");
     } else {
       const newWine = {
         text: wineInput,
-        opened: false,
         id: uuidv4(),
         user: user.email,
       };
@@ -43,10 +44,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          newWine,
-          email: user.email,
-        }),
+        body: JSON.stringify(newWine),
       })
         .then((res) => res.json())
         .then((response) => {
@@ -59,6 +57,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
             review: "",
             varietal: "",
             opened: false,
+            isLiked: false,
           });
           setWines([...wines, newWine]);
         });
@@ -71,95 +70,93 @@ const WineInput = ({ wines, setWines, setStatus }) => {
 
   return (
     <>
-      <UserIcon />
-      <LogoutButton />
-      <Wrapper>
-        <Title>Store your Wine</Title>
-        <form>
-          <InputContainer>
-            <Input
-              value={wineInput.name}
-              onChange={(e) => {
-                setWineInput({ ...wineInput, name: e.target.value });
-              }}
-              type="text"
-              placeholder="Name of the wine"
-              className="wine-input"
-            />
-            <Input
-              value={wineInput.year}
-              onChange={(e) => {
-                setWineInput({ ...wineInput, year: e.target.value });
-              }}
-              type="text"
-              maxLength="4"
-              minLength="4"
-              pattern="\d{4}"
-              placeholder="Year"
-              className="wine-input"
-            />
-            <Input
-              onChange={(e) => {
-                setWineInput({ ...wineInput, country: e.target.value });
-              }}
-              value={wineInput.country}
-              type="text"
-              placeholder="Country"
-              className="wine-input"
-            />
-            <Input
-              onChange={(e) => {
-                setWineInput({ ...wineInput, region: e.target.value });
-              }}
-              value={wineInput.region}
-              type="text"
-              placeholder="Region"
-              className="wine-input"
-            />
-            <Input
-              onChange={(e) => {
-                setWineInput({ ...wineInput, varietal: e.target.value });
-              }}
-              value={wineInput.varietal}
-              type="text"
-              placeholder="Varietal"
-              className="wine-input"
-            />
-            <Flexbox>
-              <Selector>
-                <select
-                  className="filter-wines"
-                  onChange={(e) => {
-                    setWineInput({ ...wineInput, type: e.target.value });
-                  }}
+      <BigWrapper style={{ backgroundImage: `url(${image})` }}>
+        <UserIcon />
+        <WishListButton />
+        <LogoutButton />
+        <Wrapper>
+          <Title>Store a Wine</Title>
+          <form>
+            <InputContainer>
+              <Input
+                value={wineInput.name}
+                onChange={(e) => {
+                  setWineInput({ ...wineInput, name: e.target.value });
+                }}
+                type="text"
+                placeholder="Name of the wine"
+                className="wine-input"
+              />
+              <Input
+                value={wineInput.year}
+                onChange={(e) => {
+                  setWineInput({ ...wineInput, year: e.target.value });
+                }}
+                type="text"
+                maxLength="4"
+                minLength="4"
+                pattern="\d{4}"
+                placeholder="Year"
+                className="wine-input"
+              />
+              <Input
+                onChange={(e) => {
+                  setWineInput({ ...wineInput, country: e.target.value });
+                }}
+                value={wineInput.country}
+                type="text"
+                placeholder="Country"
+                className="wine-input"
+              />
+              <Input
+                onChange={(e) => {
+                  setWineInput({ ...wineInput, region: e.target.value });
+                }}
+                value={wineInput.region}
+                type="text"
+                placeholder="Region"
+                className="wine-input"
+              />
+              <Input
+                onChange={(e) => {
+                  setWineInput({ ...wineInput, varietal: e.target.value });
+                }}
+                value={wineInput.varietal}
+                type="text"
+                placeholder="Varietal"
+                className="wine-input"
+              />
+              <Flexbox>
+                <Selector>
+                  <select
+                    className="filter-wines"
+                    onChange={(e) => {
+                      setWineInput({ ...wineInput, type: e.target.value });
+                    }}
+                  >
+                    <option value="type" selected disabled>
+                      Type
+                    </option>
+                    <option value="red">Red</option>
+                    <option value="white">White</option>
+                    <option value="rose">Rose</option>
+                    <option value="orange">Orange</option>
+                    <option value="sparkling">Sparkling</option>
+                  </select>
+                </Selector>
+                <button
+                  className="add"
+                  onClick={submitWineHandler}
+                  type="submit"
                 >
-                  <option value="type" selected disabled>
-                    Type
-                  </option>
-                  <option value="red">Red</option>
-                  <option value="white">White</option>
-                  <option value="rose">Rose</option>
-                  <option value="orange">Orange</option>
-                  <option value="sparkling">Sparkling</option>
-                </select>
-              </Selector>
-              <button className="add" onClick={submitWineHandler} type="submit">
-                add
-              </button>
-            </Flexbox>
-          </InputContainer>
-        </form>
-        {/* <Selector2>
-          <h3 style={{ textDecoration: "underline", paddingBottom: "10px" }}>
-            Sort
-          </h3>
-          <select onChange={statusHandler} className="filter-wines">
-            <option value="all">All</option>
-            <option value="opened">Opened</option>
-            <option value="cellared">Cellared</option>
-          </select>
-        </Selector2> */}
-      </Wrapper>
+                  add
+                </button>
+              </Flexbox>
+            </InputContainer>
+          </form>
+          <CellarButton />
+        </Wrapper>
+      </BigWrapper>
     </>
   );
 };
@@ -167,7 +164,16 @@ const WineInput = ({ wines, setWines, setStatus }) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 80px;
+`;
+
+const BigWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: no-repeat center/cover;
+  height: 100vh;
+  width: 100%;
 `;
 
 const InputContainer = styled.div`
@@ -178,7 +184,7 @@ const InputContainer = styled.div`
 const Input = styled.input`
   margin-top: 10px;
   border-radius: 5px;
-  border: 1px solid darkred;
+  border: 1px solid #799056;
 `;
 
 const Flexbox = styled.div`
@@ -190,12 +196,8 @@ const Flexbox = styled.div`
 
 const Selector = styled.span`
   border-radius: 5px;
-  border: 1px solid darkred;
+  border: 1px solid #799056;
 `;
-
-// const Selector2 = styled.span`
-//   margin-top: 130px;
-// `;
 
 const Title = styled.div`
   text-align: center;

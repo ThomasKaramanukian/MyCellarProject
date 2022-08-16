@@ -17,7 +17,7 @@ const WineInput = async (req, res) => {
     await client.connect();
     console.log("connected");
     const db = client.db("MyCellar");
-    const result = await db.collection("Wines").insertOne(req.body.status);
+    const result = await db.collection("Wines").insertOne(req.body);
     const result2 = await db
       .collection("Profiles")
       .updateOne({ email: req.body.email }, { $push: { cellar: req.body } });
@@ -152,10 +152,9 @@ const addReview = async (req, res) => {
   try {
     await client.connect();
     const db = client.db("MyCellar");
-    // const review = { review: req.body.review };
     const result = await db
       .collection("Wines")
-      .updateOne({ status: { id } }, { $set: { "text.review": { review } } });
+      .updateOne({ id }, { $set: { "text.review": review } });
     console.log(result);
     if (result.modifiedCount > 0) {
       return res.status(201).json({ status: 201, message: "Review added" });
@@ -163,6 +162,32 @@ const addReview = async (req, res) => {
       return res
         .status(400)
         .json({ status: 400, message: "Couldnt add review." });
+    }
+  } catch (err) {
+    console.log(err.stack);
+    res.status(500).json({ status: 500, data: req.body, message: err.stack });
+  } finally {
+    client.close();
+  }
+};
+
+const AddToWishList = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  try {
+    await client.connect();
+    const db = client.db("MyCellar");
+    const result = await db
+      .collection("Profiles")
+      .updateOne({ _id }, { $push: { cellar: [] } });
+    console.log(result);
+    if (result.modifiedCount > 0) {
+      return res
+        .status(201)
+        .json({ status: 201, message: "Added to wishlist." });
+    } else {
+      return res
+        .status(400)
+        .json({ status: 400, message: "Couldnt add to wishlist." });
     }
   } catch (err) {
     console.log(err.stack);
@@ -192,6 +217,25 @@ const getOtherUserProfile = async (req, res) => {
   client.close();
 };
 
+const getWine = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  try {
+    await client.connect();
+    const db = client.db("MyCellar");
+    const wine = req.params.id;
+    const result = await db.collection("Wines").findOne({ id: wine });
+
+    result
+      ? res.status(200).json({ status: 200, data: result })
+      : res.status(404).json({ status: 404, data: "Not Found" });
+  } catch (err) {
+    console.log(err.stack);
+    res.status(500).json({ status: 500, data: req.body, message: err.stack });
+  }
+
+  client.close();
+};
+
 module.exports = {
   WineInput,
   deleteWine,
@@ -201,4 +245,6 @@ module.exports = {
   addReview,
   getOtherUserProfile,
   getAllProfiles,
+  AddToWishList,
+  getWine,
 };

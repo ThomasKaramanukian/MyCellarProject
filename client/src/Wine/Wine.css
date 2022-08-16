@@ -5,8 +5,8 @@
 }
 
 body {
-  background-color: tan;
-  font-family: "Poppins", sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   min-height: 100vh;
   color: black;
 }
@@ -43,15 +43,16 @@ form button {
 }
 
 .add {
-  background-color: darkred;
+  background-color: #799056;
   color: white;
   width: 170px;
   font-size: 22px;
   height: 40px;
+  border-radius: 5px;
 }
 
 .add:hover {
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .wine-list {
@@ -63,7 +64,7 @@ form button {
   font-size: 1rem;
   color: black;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   transition: all 1s ease;
 }
@@ -71,7 +72,6 @@ form button {
   height: 40px;
   font-size: 18px;
   color: grey;
-  padding-left: 7px;
 }
 .todo li {
   flex: 1;
@@ -129,4 +129,30 @@ select {
   font-family: "Poppins", sans-serif;
   cursor: pointer;
   width: 170px;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heart {
+  color: black;
+
+  cursor: pointer;
+}
+
+.heart:hover {
+  animation: heartbeat 1s infinite;
+  fill: red;
+  color: red;
+  opacity: 1;
+  /* transition: opacity 500ms; */
 }

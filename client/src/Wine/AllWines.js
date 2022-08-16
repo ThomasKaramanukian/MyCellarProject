@@ -6,12 +6,17 @@ import { useState, useEffect } from "react";
 import { BiUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { AiOutlineInfoCircle, AiOutlineHeart } from "react-icons/ai";
+import { FiHeart } from "react-icons/fi";
 import Popup from "reactjs-popup";
+import WishListButton from "../WishList/WishListButton";
+import SearchBar from "../SearchBar/SearchBar";
+import "./Wine.css";
+import AddToWishList from "../WishList/Heart";
 
 const AllWines = () => {
   const [allWines, setAllWines] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [open, setOpen] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     fetch("/api/allwines")
@@ -28,13 +33,27 @@ const AllWines = () => {
   console.log(allWines);
 
   if (!hasLoaded) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
     <>
       <UserIcon />
       <LogoutButton />
+      <WishListButton />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <SearchBar />
+      </div>
+      <Title>
+        <h3 style={{ textDecoration: "underline", paddingBottom: "10px" }}>
+          All Wines
+        </h3>
+      </Title>
       <Container>
         <Wrapper>
           <div>
@@ -42,15 +61,23 @@ const AllWines = () => {
               console.log(wine);
               return (
                 <Wines>
-                  <ul style={{ textTransform: "capitalize" }}>
+                  <AddToWishList />
+                  <Link
+                    className="dataItem"
+                    to={`/wine/${wine.id}`}
+                    style={{
+                      all: "unset",
+                      cursor: "pointer",
+                      textTransform: "capitalize",
+                    }}
+                  >
                     {wine.text.name}, {wine.text.year}. {wine.text.country},{" "}
-                    {wine.text.region} - {wine.text.type} wine{" "}
-                    <WishList>
-                      <AiOutlineHeart />
-                    </WishList>
-                    <Icon to={`/profile`}>
-                      <BiUser />
-                    </Icon>
+                    {wine.text.region} - {wine.text.type} wine
+                  </Link>
+                  {/* <Icon to={`/profile`}>
+                    <BiUser />
+                  </Icon> */}
+                  {wine.text.review ? (
                     <PopupContainer>
                       <Popup
                         trigger={
@@ -62,13 +89,12 @@ const AllWines = () => {
                         }
                         position="center"
                       >
-                        <PopInfo>
-                          {wine.text.review}
-                          <button>X</button>
-                        </PopInfo>
+                        <PopInfo>{wine.text.review}</PopInfo>
                       </Popup>
                     </PopupContainer>
-                  </ul>
+                  ) : (
+                    <PopupContainer></PopupContainer>
+                  )}
                 </Wines>
               );
             })}
@@ -80,9 +106,14 @@ const AllWines = () => {
 };
 
 const Container = styled.div`
-  margin-top: 250px;
   display: flex;
   align-items: center;
+  justify-content: center;
+`;
+
+const Title = styled.div`
+  margin-top: 110px;
+  display: flex;
   justify-content: center;
 `;
 
@@ -90,6 +121,9 @@ const Icon = styled(Link)`
   float: right;
   margin-right: 5px;
   color: black;
+  &:hover {
+    background-color: transparent;
+  }
 `;
 
 const Info = styled.span`
@@ -103,10 +137,14 @@ const PopInfo = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 300px;
-  background-color: darkgreen;
+  border-radius: 15px;
+  background-color: #202020;
   color: white;
   height: 300px;
   width: 500px;
+  padding: 30px;
+  line-height: 30px;
+  font-size: 18px;
 `;
 
 const PopupContainer = styled.span``;
@@ -123,7 +161,7 @@ const Wrapper = styled.div`
   color: black;
   padding-left: 15px;
   width: 80%;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
   border-radius: 5px;
 `;
 

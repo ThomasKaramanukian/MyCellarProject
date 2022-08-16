@@ -13,7 +13,7 @@ const ReviewButton = ({ wineId }) => {
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
   console.log(wineId);
   return (
@@ -27,6 +27,9 @@ const Info = styled(Link)`
   float: right;
   margin-right: 5px;
   color: black;
+  &:hover {
+    background-color: transparent;
+  }
 `;
 
 export default ReviewButton;

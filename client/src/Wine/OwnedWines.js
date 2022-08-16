@@ -1,11 +1,12 @@
 import React from "react";
 import "./Wine.css";
-import WineInput from "./WineInput";
+import UserIcon from "./UserIcon";
+import LogoutButton from "../Logout";
 import MyWines from "./MyWines";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import image from "../Assets/mockaroon.jpg";
+import WishListButton from "../WishList/WishListButton";
 
 const Wine = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -43,7 +44,7 @@ const Wine = () => {
   }, [user]);
 
   if (!isAuthenticated) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   const filteredWines = filterHandler();
@@ -51,9 +52,9 @@ const Wine = () => {
 
   return (
     <>
-      <Wrapper style={{ backgroundImage: `url(${image})` }}>
-        <WineInput wines={wines} setWines={setWines} setStatus={setStatus} />
-      </Wrapper>
+      <UserIcon />
+      <LogoutButton />
+      <WishListButton />
       <List>
         <MyWines
           setWines={setWines}
@@ -67,18 +68,18 @@ const Wine = () => {
   );
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: no-repeat center/cover;
-  background-color: grey;
-  height: 100vh;
-  width: 100%;
-`;
+// const Wrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background: no-repeat center/cover;
+//   background-color: grey;
+//   height: 100vh;
+//   width: 100%;
+// `;
 
 const List = styled.div`
-  margin-top: 180px;
+  margin-top: 200px;
   margin-left: 100px;
 `;
 
