@@ -6,7 +6,6 @@ export const UserContext = createContext(null);
 export const UserProvider = ({ children }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [currentUser, setCurrentUser] = useState(null);
-  // console.log(user);
   useEffect(() => {
     const getUser = async () => {
       const res = await fetch("/api/user", {
@@ -17,7 +16,6 @@ export const UserProvider = ({ children }) => {
         },
       });
       const data = await res.json();
-      // console.log(data);
       if (data.status === 200) {
         setCurrentUser(data.data);
       }
@@ -38,7 +36,7 @@ export const UserProvider = ({ children }) => {
   }, [isAuthenticated]);
   // console.log(currentUser);
   return (
-    <UserContext.Provider value={{ currentUser }}>
+    <UserContext.Provider value={{ currentUser, setCurrentUser }}>
       {children}
     </UserContext.Provider>
   );

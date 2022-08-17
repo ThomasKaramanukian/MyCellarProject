@@ -40,16 +40,45 @@ const WineInput = async (req, res) => {
 
 const deleteWine = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
+  const { id } = req.body;
+  console.log(id);
   try {
     await client.connect();
     const db = client.db("MyCellar");
-    const result = await db.collection("Wines").deleteOne(req.body);
-    if (result.acknowledged > 0) {
-      return res.status(204).json({ status: 204, data: req.body });
+    const result = await db.collection("Wines").deleteOne({ id });
+    console.log(result);
+    if (result.deletedCount > 0) {
+      return res.status(201).json({ status: 201, message: "Wine deleted." });
     } else {
       return res
         .status(400)
-        .json({ status: 400, message: "Couldnt delete the wine." });
+        .json({ status: 400, message: "Couldnt delete wine." });
+    }
+  } catch (err) {
+    console.log(err.stack);
+    res.status(500).json({ status: 500, data: req.body, message: err.stack });
+  } finally {
+    client.close();
+  }
+};
+
+const openWine = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  const { id, opened } = req.body;
+  console.log(id, opened);
+  try {
+    await client.connect();
+    const db = client.db("MyCellar");
+    const result = await db
+      .collection("Wines")
+      .updateOne({ id }, { $set: { "text.opened": true } });
+    console.log(result);
+    if (result.modifiedCount > 0) {
+      return res.status(200).json({ status: 200, data: req.body });
+    } else {
+      return res
+        .status(400)
+        .json({ status: 400, message: "Couldnt open this wine." });
     }
   } catch (err) {
     console.log(err.stack);
@@ -176,9 +205,22 @@ const AddToWishList = async (req, res) => {
   try {
     await client.connect();
     const db = client.db("MyCellar");
-    const result = await db
-      .collection("Profiles")
-      .updateOne({ _id }, { $push: { cellar: [] } });
+    let result = null;
+    if (req.body.isLiked == false) {
+      result = await db
+        .collection("Profiles")
+        .updateOne(
+          { email: req.body.email },
+          { $push: { wishlist: req.body } }
+        );
+    } else {
+      result = await db
+        .collection("Profiles")
+        .updateOne(
+          { email: req.body.email },
+          { $pull: { wishlist: { id: req.body.id } } }
+        );
+    }
     console.log(result);
     if (result.modifiedCount > 0) {
       return res
@@ -247,4 +289,5 @@ module.exports = {
   getAllProfiles,
   AddToWishList,
   getWine,
+  openWine,
 };

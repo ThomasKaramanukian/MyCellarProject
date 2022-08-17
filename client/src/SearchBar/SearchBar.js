@@ -19,11 +19,9 @@ const SearchBar = () => {
       .then((data) => {
         setAllWines(data.data);
         setHasLoaded(true);
-        console.log(data.data);
       })
       .catch((error) => console.log(error));
   }, []);
-  console.log(allWines);
 
   const handleFilter = (e) => {
     const searchWord = e.target.value;
@@ -42,7 +40,10 @@ const SearchBar = () => {
       const type = value.text.type
         .toLowerCase()
         .includes(searchWord.toLowerCase());
-      return name || region || type || country;
+      const varietal = value.text.varietal
+        .toLowerCase()
+        .includes(searchWord.toLowerCase());
+      return name || region || type || country || varietal;
     });
 
     if (searchWord === "") {
@@ -85,7 +86,7 @@ const SearchBar = () => {
               <Link className="dataItem" to={`/wine/${wine.id}`}>
                 <p style={{ textTransform: "capitalize" }}>
                   {wine.text.name}, {wine.text.year}. {wine.text.country},{" "}
-                  {wine.text.region} - {wine.text.type} wine{" "}
+                  {wine.text.region}. {wine.text.varietal} - {wine.text.type}
                 </p>
               </Link>
             );

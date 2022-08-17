@@ -17,7 +17,7 @@ const ReviewButton = ({ wineId }) => {
   }
   console.log(wineId);
   return (
-    <Info to={`/review/${wineId}`}>
+    <Info style={{ fontSize: "20px" }} to={`/review/${wineId}`}>
       <AiOutlinePlusCircle />
     </Info>
   );

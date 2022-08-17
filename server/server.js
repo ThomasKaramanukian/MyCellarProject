@@ -15,6 +15,7 @@ const {
   getAllProfiles,
   AddToWishList,
   getWine,
+  openWine,
 } = require("./handlers");
 
 express()
@@ -31,7 +32,9 @@ express()
   .post("/api/adduser", addUser)
   .post("/api/user", checkUser)
   .post("/api/addreview", addReview)
-  .post("/api/addtowishlist", AddToWishList)
+  .patch("/api/openwine", openWine)
+
+  .patch("/api/addtowishlist", AddToWishList)
   .get("/api/wine/:id", getWine)
   // .get("/api/userprofile/:_id", getOtherUserProfile)
 

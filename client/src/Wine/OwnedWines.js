@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import WishListButton from "../WishList/WishListButton";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Wine = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -38,10 +39,11 @@ const Wine = () => {
           setHasLoaded(true);
           setAllWines(allWines);
           setUsersWine(usersWine);
+          console.log(usersWine);
         })
         .catch((error) => console.log(error));
     }
-  }, [user]);
+  }, [user, usersWine]);
 
   if (!isAuthenticated) {
     return <div></div>;
@@ -52,6 +54,18 @@ const Wine = () => {
 
   return (
     <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "100px",
+        }}
+      >
+        <SearchBar />
+      </div>
+      <Title>
+        <h2 style={{ textDecoration: "underline" }}>My Cellar</h2>
+      </Title>
       <UserIcon />
       <LogoutButton />
       <WishListButton />
@@ -68,19 +82,15 @@ const Wine = () => {
   );
 };
 
-// const Wrapper = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background: no-repeat center/cover;
-//   background-color: grey;
-//   height: 100vh;
-//   width: 100%;
-// `;
-
 const List = styled.div`
-  margin-top: 200px;
+  margin-top: 40px;
   margin-left: 100px;
+`;
+
+const Title = styled.div`
+  margin-top: 110px;
+  display: flex;
+  justify-content: center;
 `;
 
 export default Wine;

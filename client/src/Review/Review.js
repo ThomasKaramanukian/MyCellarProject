@@ -76,7 +76,7 @@ const StyledInput = styled.textarea`
   display: flex;
   height: 300px;
   width: 500px;
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   padding: 20px;
   line-height: 30px;

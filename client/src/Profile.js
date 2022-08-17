@@ -115,10 +115,9 @@ const Add = styled.button`
   justify-content: center;
   align-items: center;
   background: no-repeat center/cover;
-  background-color: grey;
+  background-color: white;
   height: 100vh;
   width: 100%;
-  /* background-color: #202020; */
   color: white;
   border: none;
   font-size: 22px;
@@ -141,10 +140,9 @@ const All = styled.button`
   justify-content: center;
   align-items: center;
   background: no-repeat center/cover;
-  background-color: grey;
+  background-color: white;
   height: 100vh;
   width: 100%;
-  /* background-color: #202020; */
   color: white;
   border: none;
   font-size: 22px;
@@ -167,10 +165,9 @@ const Mine = styled.button`
   justify-content: center;
   align-items: center;
   background: no-repeat center/cover;
-  background-color: grey;
+  background-color: white;
   height: 100vh;
   width: 100%;
-  /* background-color: #202020; */
   box-shadow: 0px 0px 0px 1px white inset;
   color: white;
   border: none;

@@ -13,7 +13,7 @@ const WineDetails = () => {
   const [wineDetails, setWineDetails] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  console.log(wineDetails);
+  // console.log(wineDetails);
   const { id } = useParams();
   useEffect(() => {
     fetch(`/api/wine/${id}`)
@@ -69,17 +69,14 @@ const WineDetails = () => {
             <span>Varietal:</span>
             {wineDetails.text.varietal}
           </Varietal>
-          {/* <Review>
-            <span>Reviews:</span>
-            {wineDetails.text.review}
-          </Review> */}
+
+          <Review>{wineDetails.text.review}</Review>
         </Content>
       </div>
-      <Review>{wineDetails.text.review}</Review>
-      <Wish>
+      {/* <Wish>
         <p style={{ marginRight: "10px" }}>Add to you wishlist!</p>
         <AddToWishList />
-      </Wish>
+      </Wish> */}
       <VarietalInfo
         style={{
           marginTop: "100px",
@@ -93,7 +90,15 @@ const WineDetails = () => {
   );
 };
 
-const Review = styled.div``;
+const Review = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  margin-top: 50px;
+  margin-left: 20px;
+  /* text-align: center; */
+`;
 
 const VarietalInfo = styled.div`
   margin-top: 20px;
@@ -114,7 +119,7 @@ const Content = styled.div`
 `;
 
 const Wish = styled.div`
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -123,7 +128,7 @@ const Wish = styled.div`
 
 const Name = styled.span`
   font-size: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-decoration: underline;
 `;
 const Country = styled.span`

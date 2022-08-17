@@ -39,7 +39,7 @@ const WinePairing = () => {
             fontSize: "18px",
             marginTop: "10px",
             marginLeft: "10px",
-            width: "180px",
+            width: "470px",
           }}
           type="text"
           placeholder="What's on the menu?"

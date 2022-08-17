@@ -3,28 +3,52 @@ import { BiTrash } from "react-icons/bi";
 import { FaWineBottle, FaWineGlassAlt } from "react-icons/fa";
 import styled from "styled-components";
 import ReviewButton from "../Review/ReviewButton";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import Popup from "reactjs-popup";
+import OpenWine from "./OpenWine";
+import DeleteWine from "./DeleteWine";
 
-const Wines = ({ text, wine, wineId }) => {
-  console.log(wine.text.opened);
+const Wines = ({
+  text,
+  wine,
+  wineId,
+  setWines,
+  wines,
+  usersWine,
+  setUsersWine,
+}) => {
+  console.log(wineId);
 
   return (
     <>
-      <List>
-        <div className="todo">
-          <li>
+      <List className="todo">
+        <Link
+          to={`/wine/${wine.id}`}
+          style={{
+            all: "unset",
+            cursor: "pointer",
+          }}
+        >
+          <div>
             {text.name}, {text.year}. {text.country}, {text.region}.{" "}
-            {text.varietal} - {text.type} Wine
-          </li>
+            {text.varietal} - {text.type}
+          </div>
+        </Link>
+        <Wrapper2>
           {wine.text.review ? (
             <PopupContainer>
               <Popup
                 trigger={
                   <Info>
-                    <button style={{ all: "unset", cursor: "pointer" }}>
+                    <button
+                      style={{
+                        all: "unset",
+                        cursor: "pointer",
+                        fontSize: "20px",
+                      }}
+                    >
                       <AiOutlineInfoCircle />
                     </button>
                   </Info>
@@ -42,40 +66,41 @@ const Wines = ({ text, wine, wineId }) => {
               all: "unset",
               cursor: "pointer",
               fontSize: "20px",
+              marginLeft: "2px",
             }}
           >
-            <FaWineBottle />
-            {/* if (text.opened === false) {<FaWineBottle />} else{" "}
-          {<FaWineGlassAlt />} */}
+            {wine.text.opened === false ? (
+              <OpenWine
+                wines={wines}
+                setWines={setWines}
+                wine={wine}
+                wineId={wineId}
+                usersWine={usersWine}
+                setUsersWine={setUsersWine}
+              />
+            ) : (
+              <FaWineGlassAlt
+                style={{ marginLeft: "2px", marginRight: "4px" }}
+              />
+            )}
           </button>
-          <button
-            style={{
-              all: "unset",
-              cursor: "pointer",
-              fontSize: "20px",
-            }}
-          >
-            <BiTrash
-              style={{
-                all: "unset",
-                cursor: "pointer",
-                fontSize: "20px",
-              }}
-            />
-          </button>
-        </div>
+          <DeleteWine wineId={wineId} />
+        </Wrapper2>
       </List>
     </>
   );
 };
 
 const List = styled.div`
+  display: flex;
+  justify-content: space-between;
   margin: 10px;
   padding: 10px;
   background: white;
   border-radius: 5px;
   font-size: 16px;
   width: 110%;
+  border: 1px solid black;
 `;
 
 const Info = styled.span`
@@ -84,13 +109,17 @@ const Info = styled.span`
   color: black;
 `;
 
+const Wrapper2 = styled.div`
+  display: flex;
+`;
+
 const PopInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 300px;
   border-radius: 15px;
-  background-color: #202020;
+  background-color: #799056;
   color: white;
   height: 300px;
   width: 500px;

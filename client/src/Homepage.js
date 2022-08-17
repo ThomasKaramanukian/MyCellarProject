@@ -4,7 +4,7 @@ import Profile from "./Profile";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import image from "./Assets/jadon-barnes.jpg";
+import image from "./Assets/karsten.jpg";
 
 const Homepage = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -24,9 +24,7 @@ const Homepage = () => {
             <h1>MyCellar</h1>
           </Title>
           <Heading>
-            <h2>Store,</h2>
-            <h2>Learn,</h2>
-            <h2>Enjoy.</h2>
+            <h2>Store, Learn, Enjoy.</h2>
           </Heading>
         </Text>
       </Wrapper>
@@ -48,16 +46,20 @@ const Text = styled.div`
   display: table;
   justify-content: center;
   align-items: center;
-  margin-left: 15px;
+  margin-bottom: 50px;
 `;
 
 const Title = styled.div`
   color: #faf9f6;
-  margin-bottom: 20px; ;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 46px;
+  margin-bottom: 40px;
 `;
 
 const Heading = styled.div`
   color: #faf9f6;
+  text-align: center;
 `;
 
 export default Homepage;

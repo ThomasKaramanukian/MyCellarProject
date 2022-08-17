@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import UserIcon from "./UserIcon";
 import LogoutButton from "../Logout";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BiUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { AiOutlineInfoCircle, AiOutlineHeart } from "react-icons/ai";
@@ -12,11 +12,12 @@ import WishListButton from "../WishList/WishListButton";
 import SearchBar from "../SearchBar/SearchBar";
 import "./Wine.css";
 import AddToWishList from "../WishList/Heart";
+import { UserContext } from "../ProfileContext";
 
 const AllWines = () => {
   const [allWines, setAllWines] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
-  // const [isLiked, setIsLiked] = useState(false);
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     fetch("/api/allwines")
@@ -32,7 +33,7 @@ const AllWines = () => {
   }, []);
   console.log(allWines);
 
-  if (!hasLoaded) {
+  if (!hasLoaded || !currentUser) {
     return <div></div>;
   }
 
@@ -58,10 +59,9 @@ const AllWines = () => {
         <Wrapper>
           <div>
             {allWines.map((wine, index) => {
-              console.log(wine);
               return (
                 <Wines>
-                  <AddToWishList />
+                  <AddToWishList wine={wine} />
                   <Link
                     className="dataItem"
                     to={`/wine/${wine.id}`}
@@ -69,20 +69,23 @@ const AllWines = () => {
                       all: "unset",
                       cursor: "pointer",
                       textTransform: "capitalize",
+                      fontSize: "16px",
                     }}
                   >
                     {wine.text.name}, {wine.text.year}. {wine.text.country},{" "}
-                    {wine.text.region} - {wine.text.type} wine
+                    {wine.text.region}. {wine.text.varietal} - {wine.text.type}
                   </Link>
-                  {/* <Icon to={`/profile`}>
-                    <BiUser />
-                  </Icon> */}
                   {wine.text.review ? (
                     <PopupContainer>
                       <Popup
                         trigger={
                           <Info>
-                            <button style={{ all: "unset", cursor: "pointer" }}>
+                            <button
+                              style={{
+                                all: "unset",
+                                cursor: "pointer",
+                              }}
+                            >
                               <AiOutlineInfoCircle />
                             </button>
                           </Info>
@@ -113,6 +116,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   margin-top: 110px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: center;
 `;
@@ -138,7 +142,7 @@ const PopInfo = styled.div`
   align-items: center;
   margin-right: 300px;
   border-radius: 15px;
-  background-color: #202020;
+  background-color: #799056;
   color: white;
   height: 300px;
   width: 500px;
@@ -169,7 +173,8 @@ const Wines = styled.div`
   margin-top: 10px;
   padding: 10px;
   background: white;
-  border-radius: 5px; ;
+  border-radius: 5px;
+  border: 1px solid black;
 `;
 
 export default AllWines;

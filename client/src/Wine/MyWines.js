@@ -20,11 +20,6 @@ const MyWines = ({
   return (
     <>
       <div className="wine-container">
-        <Title>
-          <h3 style={{ textDecoration: "underline", paddingBottom: "10px" }}>
-            My Cellar
-          </h3>
-        </Title>
         <div>
           <ul style={{ textTransform: "capitalize" }} className="wine-list">
             {filteredWines.map((wine) => (
