@@ -25,9 +25,7 @@ const WishList = () => {
         <SearchBar />
       </div>
       <Title>
-        <h3 style={{ textDecoration: "underline", paddingBottom: "10px" }}>
-          Your Favourites
-        </h3>
+        <h2 style={{ textDecoration: "underline" }}>Your Favourites</h2>
       </Title>
       {currentUser ? (
         <Wrapper>

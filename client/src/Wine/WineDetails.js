@@ -73,13 +73,9 @@ const WineDetails = () => {
           <Review>{wineDetails.text.review}</Review>
         </Content>
       </div>
-      {/* <Wish>
-        <p style={{ marginRight: "10px" }}>Add to you wishlist!</p>
-        <AddToWishList />
-      </Wish> */}
       <VarietalInfo
         style={{
-          marginTop: "100px",
+          marginTop: "50px",
           display: "flex",
           justifyContent: "center",
         }}

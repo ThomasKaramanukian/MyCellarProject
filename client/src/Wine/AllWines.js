@@ -3,10 +3,8 @@ import styled from "styled-components";
 import UserIcon from "./UserIcon";
 import LogoutButton from "../Logout";
 import { useState, useEffect, useContext } from "react";
-import { BiUser } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { AiOutlineInfoCircle, AiOutlineHeart } from "react-icons/ai";
-import { FiHeart } from "react-icons/fi";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import Popup from "reactjs-popup";
 import WishListButton from "../WishList/WishListButton";
 import SearchBar from "../SearchBar/SearchBar";
@@ -51,9 +49,7 @@ const AllWines = () => {
         <SearchBar />
       </div>
       <Title>
-        <h3 style={{ textDecoration: "underline", paddingBottom: "10px" }}>
-          All Wines
-        </h3>
+        <h2 style={{ textDecoration: "underline" }}>All Wines</h2>
       </Title>
       <Container>
         <Wrapper>
