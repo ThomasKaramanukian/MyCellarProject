@@ -61,8 +61,8 @@ const WinePairing = () => {
 };
 
 const TextArea = styled.div`
-  height: 250px;
-  width: 60vh;
+  height: 220px;
+  width: 600px;
   border: 3px solid black;
   border-radius: 5px;
   background-color: white;
@@ -70,10 +70,11 @@ const TextArea = styled.div`
 `;
 
 const Pairing = styled.div`
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
   line-height: 22px;
+  font-size: 14px;
 `;
 
 const Button = styled.button`

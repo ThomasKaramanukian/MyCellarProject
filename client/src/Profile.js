@@ -95,19 +95,19 @@ const Wrapper = styled.div`
 const Pairing = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 70px;
+  margin-top: 50px;
 `;
 
 const Content = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 const Buttons = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const Add = styled.button`
