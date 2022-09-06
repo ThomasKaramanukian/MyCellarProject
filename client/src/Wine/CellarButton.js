@@ -21,16 +21,18 @@ const Button = styled.div`
   display: flex;
   justify-content: center;
   background-color: black;
+  border: 2px solid black;
+  outline: 2px solid white;
   color: white;
-  margin-top: 30px;
+  margin-top: 20px;
   height: 50px;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 22px;
+  font-family: "Abril Fatface", cursive;
+  font-size: 26px;
   cursor: pointer;
-  border-radius: 5px;
+
   &:hover {
-    background-color: #799056;
+    transform: scale(1.1);
     transition: all 0.5s ease-in-out;
   }
 `;

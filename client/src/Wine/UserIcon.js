@@ -17,13 +17,13 @@ const UserIcon = () => {
 };
 
 const Button = styled.button`
-  color: black;
+  color: white;
   position: absolute;
   background: none;
   outline: none;
   border: none;
   top: 50px;
-  left: 66px;
+  right: 146px;
   font-size: 30px;
   cursor: pointer;
 `;

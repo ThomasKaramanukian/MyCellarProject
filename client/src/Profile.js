@@ -4,14 +4,16 @@ import LogoutButton from "./Logout";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import WinePairing from "./WinePairing";
-import SearchBar from "./SearchBar/SearchBar";
-import { FaWineBottle } from "react-icons/fa";
+import SearchBarHome from "./SearchBarHome/SearchBarHome";
+import Fade from "react-reveal/Fade";
+import Zoom from "react-reveal/Zoom";
 import WishListButton from "./WishList/WishListButton";
-import WishList from "./WishList/WishList";
-import image1 from "./Assets/image1.jpg";
-import image2 from "./Assets/image2.jpg";
-import image3 from "./Assets/image3.jpg";
-import image4 from "./Assets/social.jpg";
+import image1 from "./Assets/bg1.2.jpg";
+import image2 from "./Assets/BG-part4.jpg";
+import image3 from "./Assets/Bg3.2.jpg";
+import image4 from "./Assets/bg1.0.jpg";
+import Arrow from "./Arrow/Arrow";
+import { slide as Menu } from "react-burger-menu";
 
 const Profile = () => {
   let navigate = useNavigate();
@@ -32,155 +34,204 @@ const Profile = () => {
 
   return (
     <>
-      <Wrapper style={{ backgroundImage: `url(${image4})` }}>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <SearchBar />
-        </div>
+      <Wrapper1
+        style={{
+          backgroundImage: `url(${image4})`,
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "center" }}></div>
+        <Title>my cellar</Title>
         <WishListButton />
         <LogoutButton />
-        <Content>
-          <img
-            style={{
-              height: "50px",
-              borderRadius: "30px",
-              border: "2px solid black",
-            }}
-            src={user.picture}
-          />
-          <div
-            style={{
-              marginTop: "5px",
-              marginRight: "20px",
-              marginLeft: "10px",
-              fontSize: "32px",
-            }}
-          >
-            {user.nickname}
-          </div>
-        </Content>
-        <Buttons>
-          <Add
-            style={{ backgroundImage: `url(${image1})` }}
-            onClick={WineInput}
-          >
-            <div style={{ paddingBottom: "150px" }}>Store a Wine</div>
-          </Add>
-          <Mine
-            style={{ backgroundImage: `url(${image2})` }}
-            onClick={MyCellar}
-          >
-            <div style={{ paddingBottom: "150px" }}>My Cellar</div>
-          </Mine>
-          <All style={{ backgroundImage: `url(${image3})` }} onClick={AllWines}>
-            <div style={{ paddingBottom: "150px" }}>All Wines</div>
-          </All>
-        </Buttons>
+        <SearchBarWrapper>
+          <SearchBarHome />
+        </SearchBarWrapper>
         <Pairing>
           <WinePairing />
         </Pairing>
-      </Wrapper>
+        <ArrowDiv>
+          <Arrow />
+        </ArrowDiv>
+      </Wrapper1>
+      <BG1
+        style={{
+          backgroundImage: `url(${image1})`,
+        }}
+      >
+        <StoreWine>
+          <Zoom duration={1000} right>
+            <Add onClick={WineInput}>
+              <h2>store a wine</h2>
+            </Add>
+          </Zoom>
+        </StoreWine>
+      </BG1>
+      <BG2
+        style={{
+          backgroundImage: `url(${image2})`,
+        }}
+      >
+        <MyWines>
+          <Zoom duration={1000} left>
+            <Mine onClick={MyCellar}>
+              <h2>my cellar</h2>
+            </Mine>
+          </Zoom>
+        </MyWines>
+      </BG2>
+      <BG3
+        style={{
+          backgroundImage: `url(${image3})`,
+        }}
+      >
+        <Wines>
+          <Zoom duration={1000} right>
+            <All onClick={AllWines}>
+              <h2>all wines</h2>
+            </All>
+          </Zoom>
+        </Wines>
+      </BG3>
     </>
   );
 };
 
-const Wrapper = styled.div`
-  height: 100vh;
-  width: 100%;
+const Wrapper1 = styled.div`
+  min-height: 100vh;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+`;
+
+const BG1 = styled.div`
+  height: 70vh;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+`;
+
+const BG2 = styled.div`
+  height: 70vh;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+`;
+
+const BG3 = styled.div`
+  height: 70vh;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+`;
+
+const StoreWine = styled.div`
+  height: 70vh;
+  display: flex;
   justify-content: center;
   align-items: center;
-  background: no-repeat center/cover;
-  background-color: white;
+`;
+
+const MyWines = styled.div`
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Wines = styled.div`
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Pairing = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 100px;
 `;
 
-const Content = styled.div`
+const ArrowDiv = styled.div``;
+
+const Title = styled.h1`
+  color: white;
+  font-size: 80px;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 150px;
 `;
 
-const Buttons = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-`;
-
-const Add = styled.button`
+const Add = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: no-repeat center/cover;
-  background-color: white;
-  height: 100vh;
   width: 100%;
-  color: white;
-  border: none;
-  font-size: 22px;
-  border-radius: 5px;
-  margin-top: 20px;
-  height: 300px;
-  width: 200px;
+  color: black;
+  background-color: white;
+  border: 3px solid black;
+  font-size: 32px;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0px 0px 0px 1px white inset;
-    background-color: darkred;
     transition: all 0.5s ease-in-out;
+    outline: 3px solid white;
   }
 `;
 
-const All = styled.button`
+const All = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: no-repeat center/cover;
-  background-color: white;
-  height: 100vh;
   width: 100%;
-  color: white;
-  border: none;
-  font-size: 22px;
-  border-radius: 5px;
-  margin-top: 20px;
-  height: 300px;
-  width: 200px;
+  color: black;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0px 0px 0px 1px white inset;
-    background-color: darkred;
     transition: all 0.5s ease-in-out;
+    outline: 3px solid white;
   }
 `;
 
-const Mine = styled.button`
+const Mine = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: no-repeat center/cover;
-  background-color: white;
-  height: 100vh;
   width: 100%;
-  box-shadow: 0px 0px 0px 1px white inset;
-  color: white;
-  border: none;
-  font-size: 22px;
-  border-radius: 5px;
-  margin-top: 20px;
-  height: 300px;
-  width: 200px;
+  color: black;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 50%;
+  font-size: 32px;
+  height: 250px;
+  width: 250px;
+  margin-bottom: 180px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
   &:hover {
     transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
+    outline: 3px solid white;
   }
+`;
+
+const SearchBarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 `;
 
 export default Profile;

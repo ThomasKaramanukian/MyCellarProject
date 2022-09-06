@@ -12,6 +12,7 @@ import OwnedWines from "./Wine/OwnedWines";
 import SearchBar from "./SearchBar/SearchBar";
 import WishList from "./WishList/WishList";
 import WineDetails from "./Wine/WineDetails";
+import "./app.css";
 
 const App = () => {
   return (

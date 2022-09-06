@@ -17,7 +17,7 @@ const WishListButton = () => {
 };
 
 const Button = styled.button`
-  color: black;
+  color: white;
   position: absolute;
   background: none;
   outline: none;

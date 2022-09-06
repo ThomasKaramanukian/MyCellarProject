@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { useAuth0, User } from "@auth0/auth0-react";
 import LogoutButton from "../Logout";
 import UserIcon from "./UserIcon";
-import image from "../Assets/mockaroon.jpg";
 import CellarButton from "./CellarButton";
 import WishListButton from "../WishList/WishListButton";
 
@@ -70,7 +69,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
 
   return (
     <>
-      <BigWrapper style={{ backgroundImage: `url(${image})` }}>
+      <BigWrapper>
         <UserIcon />
         <WishListButton />
         <LogoutButton />
@@ -127,7 +126,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
                 className="wine-input"
               />
               <Flexbox>
-                <Selector>
+                <Selector style={{ marginTop: "-10px" }}>
                   <select
                     className="filter-wines"
                     onChange={(e) => {
@@ -149,7 +148,9 @@ const WineInput = ({ wines, setWines, setStatus }) => {
                   onClick={submitWineHandler}
                   type="submit"
                 >
-                  add
+                  <h2 style={{ fontSize: "26px" }} ß>
+                    add
+                  </h2>
                 </button>
               </Flexbox>
             </InputContainer>
@@ -171,7 +172,7 @@ const BigWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: no-repeat center/cover;
+  background: black;
   height: 100vh;
   width: 100%;
 `;
@@ -182,9 +183,9 @@ const InputContainer = styled.div`
 `;
 
 const Input = styled.input`
-  margin-top: 10px;
-  border-radius: 5px;
-  border: 1px solid #799056;
+  margin-bottom: 15px;
+  border: 2px solid black;
+  outline: 2px solid white;
 `;
 
 const Flexbox = styled.div`
@@ -195,14 +196,16 @@ const Flexbox = styled.div`
 `;
 
 const Selector = styled.span`
-  border-radius: 5px;
-  border: 1px solid #799056;
+  border: 2px solid black;
+  outline: 2px solid white;
+  width: 170px;
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
   text-align: center;
-  font-size: 30px;
-  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: white;
 `;
 
 export default WineInput;

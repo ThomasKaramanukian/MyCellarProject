@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import image from "../Assets/jesse-belleque.jpg";
+import image from "../Assets/social.jpg";
 import LogoutButton from "../Logout";
 import UserIcon from "../Wine/UserIcon";
 

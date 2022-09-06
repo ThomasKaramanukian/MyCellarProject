@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Notable&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +7,6 @@
 }
 
 body {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   min-height: 100vh;
   color: black;
 }
@@ -29,7 +29,6 @@ form button {
   background: white;
 }
 form button {
-  color: #ff6f47;
   background: #f7fffe;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -43,16 +42,20 @@ form button {
 }
 
 .add {
-  background-color: #799056;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
   color: white;
   width: 170px;
-  font-size: 22px;
-  height: 40px;
-  border-radius: 5px;
+  height: 44px;
+  border: 2px solid black;
+  outline: 2px solid white;
+  margin-top: -10px;
 }
 
 .add:hover {
-  border-radius: 15px;
+  transform: scale(1.2);
 }
 
 .wine-list {
@@ -72,6 +75,9 @@ form button {
   height: 40px;
   font-size: 18px;
   color: grey;
+  padding-left: 8px;
+  font-family: "Abril Fatface", cursive;
+  width: 166px;
 }
 .todo li {
   flex: 1;

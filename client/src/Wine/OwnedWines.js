@@ -54,43 +54,55 @@ const Wine = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "100px",
-        }}
-      >
-        <SearchBar />
-      </div>
-      <Title>
-        <h2 style={{ textDecoration: "underline" }}>My Cellar</h2>
-      </Title>
-      <UserIcon />
-      <LogoutButton />
-      <WishListButton />
-      <List>
-        <MyWines
-          setWines={setWines}
-          wines={wines}
-          filteredWines={filteredWines}
-          setUsersWine={setUsersWine}
-          usersWine={usersWine}
-        />
-      </List>
+      <Wrapper>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "100px",
+            backgroundColor: "black",
+          }}
+        >
+          <SearchBar />
+        </div>
+        <Title>
+          <h1>My Cellar</h1>
+        </Title>
+        <UserIcon />
+        <LogoutButton />
+        <WishListButton />
+        <List>
+          <MyWines
+            setWines={setWines}
+            wines={wines}
+            filteredWines={filteredWines}
+            setUsersWine={setUsersWine}
+            usersWine={usersWine}
+          />
+        </List>
+      </Wrapper>
     </>
   );
 };
 
+const Wrapper = styled.div`
+  background-color: black;
+  height: 100vh;
+`;
+
 const List = styled.div`
   margin-top: 40px;
   margin-left: 100px;
+  background-color: black;
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
   margin-top: 110px;
   display: flex;
   justify-content: center;
+  color: white;
+  font-family: "Notable", sans-serif;
+  font-size: 22px;
 `;
 
 export default Wine;

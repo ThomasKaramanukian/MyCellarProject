@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Notable&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Notable&display=swap");
+
+* {
+  font-family: "Abril Fatface", cursive;
+}
+
+h1 {
+  font-family: "Notable", sans-serif;
+}
+
+h2 {
+  font-family: "Abril Fatface", cursive;
+  font-size: 36px;
+}
