@@ -148,9 +148,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
                   onClick={submitWineHandler}
                   type="submit"
                 >
-                  <h2 style={{ fontSize: "26px" }} ß>
-                    add
-                  </h2>
+                  <h2 style={{ fontSize: "26px" }}>add</h2>
                 </button>
               </Flexbox>
             </InputContainer>

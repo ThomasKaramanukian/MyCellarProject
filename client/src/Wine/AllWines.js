@@ -37,20 +37,22 @@ const AllWines = () => {
 
   return (
     <>
-      <UserIcon />
-      <LogoutButton />
-      <WishListButton />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <SearchBar />
+      <div style={{ backgroundColor: "black" }}>
+        <UserIcon />
+        <LogoutButton />
+        <WishListButton />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <SearchBar />
+        </div>
+        <Title>
+          <h1>All Wines</h1>
+        </Title>
       </div>
-      <Title>
-        <h2 style={{ textDecoration: "underline" }}>All Wines</h2>
-      </Title>
       <Container>
         <Wrapper>
           <div>
@@ -108,22 +110,15 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: black;
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
   margin-top: 110px;
-  margin-bottom: 30px;
   display: flex;
   justify-content: center;
-`;
-
-const Icon = styled(Link)`
-  float: right;
-  margin-right: 5px;
-  color: black;
-  &:hover {
-    background-color: transparent;
-  }
+  color: white;
+  height: 110px;
 `;
 
 const Info = styled.span`
@@ -138,7 +133,7 @@ const PopInfo = styled.div`
   align-items: center;
   margin-right: 300px;
   border-radius: 15px;
-  background-color: #799056;
+  background-color: black;
   color: white;
   height: 300px;
   width: 500px;
@@ -148,13 +143,6 @@ const PopInfo = styled.div`
 `;
 
 const PopupContainer = styled.span``;
-
-const WishList = styled.span`
-  float: right;
-  margin-right: 5px;
-  color: black;
-  cursor: pointer;
-`;
 
 const Wrapper = styled.div`
   font-size: 1.2rem;
@@ -169,8 +157,8 @@ const Wines = styled.div`
   margin-top: 10px;
   padding: 10px;
   background: white;
-  border-radius: 5px;
   border: 1px solid black;
+  outline: 2px solid white;
 `;
 
 export default AllWines;

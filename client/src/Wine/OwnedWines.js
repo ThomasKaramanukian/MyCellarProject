@@ -43,7 +43,7 @@ const Wine = () => {
         })
         .catch((error) => console.log(error));
     }
-  }, [user, usersWine]);
+  }, [user]);
 
   if (!isAuthenticated) {
     return <div></div>;
@@ -102,7 +102,6 @@ const Title = styled.h1`
   justify-content: center;
   color: white;
   font-family: "Notable", sans-serif;
-  font-size: 22px;
 `;
 
 export default Wine;

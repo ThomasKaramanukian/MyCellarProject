@@ -97,10 +97,11 @@ const List = styled.div`
   margin: 10px;
   padding: 10px;
   background: white;
-  border-radius: 5px;
+
   font-size: 16px;
   width: 110%;
-  border: 1px solid black;
+  border: 2px solid black;
+  outline: 2px solid white;
 `;
 
 const Info = styled.span`
