@@ -64,7 +64,9 @@ const TextArea = styled.div`
   height: 130px;
   width: 60vh;
   border: 3px solid black;
+  outline: 3px solid white;
   border-radius: 5px;
+  background-color: white;
 `;
 
 const Pairing = styled.div`

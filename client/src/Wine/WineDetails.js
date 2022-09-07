@@ -35,53 +35,55 @@ const WineDetails = () => {
 
   return (
     <>
-      <UserIcon />
-      <LogoutButton />
-      <WishListButton />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <SearchBar />
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Content style={{ textTransform: "capitalize" }}>
-          <Name>{wineDetails.text.name}</Name>
-          <Country>
-            <span>Country:</span>
-            {wineDetails.text.country}
-          </Country>
-          <Region>
-            <span>Region:</span>
-            {wineDetails.text.region}
-          </Region>
-          <Year>
-            <span>Year:</span>
-            {wineDetails.text.year}
-          </Year>
-          <Type>
-            <span>Type:</span>
-            {wineDetails.text.type}
-          </Type>
-          <Varietal>
-            <span>Varietal:</span>
-            {wineDetails.text.varietal}
-          </Varietal>
+      <div style={{ backgroundColor: "black", height: "100vh" }}>
+        <UserIcon />
+        <LogoutButton />
+        <WishListButton />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <SearchBar />
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Content style={{ textTransform: "capitalize" }}>
+            <Name>{wineDetails.text.name}</Name>
+            <Country>
+              <span>Country:</span>
+              {wineDetails.text.country}
+            </Country>
+            <Region>
+              <span>Region:</span>
+              {wineDetails.text.region}
+            </Region>
+            <Year>
+              <span>Year:</span>
+              {wineDetails.text.year}
+            </Year>
+            <Type>
+              <span>Type:</span>
+              {wineDetails.text.type}
+            </Type>
+            <Varietal>
+              <span>Varietal:</span>
+              {wineDetails.text.varietal}
+            </Varietal>
 
-          <Review>{wineDetails.text.review}</Review>
-        </Content>
+            <Review>{wineDetails.text.review}</Review>
+          </Content>
+        </div>
+        <VarietalInfo
+          style={{
+            marginTop: "50px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <WineInfo varietal={wineDetails.text.varietal} />
+        </VarietalInfo>
       </div>
-      <VarietalInfo
-        style={{
-          marginTop: "50px",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <WineInfo varietal={wineDetails.text.varietal} />
-      </VarietalInfo>
     </>
   );
 };
@@ -112,14 +114,7 @@ const Content = styled.div`
   height: 100%;
   width: 60vh;
   line-height: 30px;
-`;
-
-const Wish = styled.div`
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  color: white;
 `;
 
 const Name = styled.span`
