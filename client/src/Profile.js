@@ -162,7 +162,7 @@ const Title = styled.h1`
   font-size: 80px;
   display: flex;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 130px;
 `;
 
 const Add = styled.span`

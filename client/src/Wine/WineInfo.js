@@ -61,11 +61,10 @@ const WineInfo = () => {
 };
 
 const TextArea = styled.div`
-  height: 130px;
-  width: 60vh;
+  height: 150px;
+  width: 61vh;
   border: 3px solid black;
   outline: 3px solid white;
-  border-radius: 5px;
   background-color: white;
 `;
 
@@ -79,10 +78,19 @@ const Pairing = styled.div`
 const Button = styled.button`
   all: unset;
   cursor: pointer;
+  background-color: black;
+  color: white;
   border: 1px solid black;
-  border-radius: 5px;
-  width: 80px;
+  border-radius: 30px;
+  width: 100px;
+  height: 40px;
   text-align: center;
+  margin-top: 5px;
+  margin-right: 2px;
+  &:hover {
+    border: 1px solid white;
+    outline: 1px solid black;
+  }
 `;
 
 export default WineInfo;

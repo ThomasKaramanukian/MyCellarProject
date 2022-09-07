@@ -45,7 +45,7 @@ const WineDetails = () => {
             justifyContent: "center",
           }}
         >
-          <SearchBar />
+          {/* <SearchBar /> */}
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Content style={{ textTransform: "capitalize" }}>
@@ -71,7 +71,14 @@ const WineDetails = () => {
               {wineDetails.text.varietal}
             </Varietal>
 
-            <Review>{wineDetails.text.review}</Review>
+            <Review>
+              <span
+                style={{ marginRight: "20px", textDecoration: "underline" }}
+              >
+                Review:{" "}
+              </span>
+              {wineDetails.text.review}
+            </Review>
           </Content>
         </div>
         <VarietalInfo
@@ -92,15 +99,26 @@ const Review = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 500px;
+  width: 61vh;
   margin-top: 50px;
   margin-left: 20px;
+  font-size: 16px;
+  line-height: 32px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  background: white;
+  height: 100%;
+  color: black;
+  border: 3px solid black;
+  outline: 3px solid white;
   /* text-align: center; */
 `;
 
 const VarietalInfo = styled.div`
   margin-top: 20px;
-  margin-left: 10px;
+  margin-left: 30px;
   margin-right: 10px;
   line-height: 22px;
 `;
@@ -109,7 +127,7 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 200px;
   flex-direction: column;
   height: 100%;
   width: 60vh;
@@ -117,10 +135,9 @@ const Content = styled.div`
   color: white;
 `;
 
-const Name = styled.span`
+const Name = styled.h1`
   font-size: 36px;
   margin-bottom: 30px;
-  text-decoration: underline;
 `;
 const Country = styled.span`
   display: flex;

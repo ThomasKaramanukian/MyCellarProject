@@ -133,8 +133,10 @@ const PopInfo = styled.div`
   align-items: center;
   margin-right: 300px;
   border-radius: 15px;
-  background-color: black;
-  color: white;
+  background-color: white;
+  border: 5px solid black;
+  outline: 5px solid white;
+  color: black;
   height: 300px;
   width: 500px;
   padding: 30px;
