@@ -7,6 +7,7 @@ import LogoutButton from "../Logout";
 import UserIcon from "./UserIcon";
 import CellarButton from "./CellarButton";
 import WishListButton from "../WishList/WishListButton";
+import Navbar from "../Menu/SideBar";
 
 const { v4: uuidv4 } = require("uuid");
 const WineInput = ({ wines, setWines, setStatus }) => {
@@ -69,6 +70,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
 
   return (
     <>
+      <Navbar />
       <BigWrapper>
         <UserIcon />
         <WishListButton />
@@ -163,7 +165,7 @@ const WineInput = ({ wines, setWines, setStatus }) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  margin-top: -200px;
 `;
 
 const BigWrapper = styled.div`
@@ -173,6 +175,7 @@ const BigWrapper = styled.div`
   background: black;
   height: 100vh;
   width: 100%;
+  overflow: none;
 `;
 
 const InputContainer = styled.div`

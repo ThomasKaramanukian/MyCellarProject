@@ -11,6 +11,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./Wine.css";
 import AddToWishList from "../WishList/Heart";
 import { UserContext } from "../ProfileContext";
+import Navbar from "../Menu/SideBar";
 
 const AllWines = () => {
   const [allWines, setAllWines] = useState(null);
@@ -38,6 +39,7 @@ const AllWines = () => {
   return (
     <>
       <div style={{ backgroundColor: "black" }}>
+        <Navbar />
         <UserIcon />
         <LogoutButton />
         <WishListButton />
@@ -114,7 +116,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-  margin-top: 110px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   color: white;
@@ -159,7 +161,7 @@ const Wines = styled.div`
   margin-top: 10px;
   padding: 10px;
   background: white;
-  border: 1px solid black;
+  border: 2px solid black;
   outline: 2px solid white;
 `;
 

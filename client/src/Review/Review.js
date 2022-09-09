@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 import image from "../Assets/social.jpg";
 import LogoutButton from "../Logout";
 import UserIcon from "../Wine/UserIcon";
+import WishList from "../WishList/WishList";
+import WishListButton from "../WishList/WishListButton";
+import Navbar from "../Menu/SideBar";
 
 const AddReview = () => {
   const { wineId } = useParams();
@@ -39,23 +42,28 @@ const AddReview = () => {
   };
 
   return (
-    <Wrapper style={{ backgroundImage: `url(${image})` }}>
-      <LogoutButton />
-      <UserIcon />
-      <Review>
-        <form onSubmit={(e) => submitFunc(e)}>
-          <StyledInput
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="Leave a review..."
-            maxLength={350}
-            value={value}
-          />
-          <StyledButton type="submit" value="Leave Review">
-            Leave Review
-          </StyledButton>
-        </form>
-      </Review>
-    </Wrapper>
+    <>
+      <Navbar />
+      <Wrapper>
+        <WishListButton />
+        <LogoutButton />
+        <UserIcon />
+        <Review>
+          <Title>Review</Title>
+          <form onSubmit={(e) => submitFunc(e)}>
+            <StyledInput
+              onChange={(e) => setValue(e.target.value)}
+              placeholder="Leave a review..."
+              maxLength={350}
+              value={value}
+            />
+            <StyledButton type="submit" value="Leave Review">
+              Leave Review
+            </StyledButton>
+          </form>
+        </Review>
+      </Wrapper>
+    </>
   );
 };
 
@@ -63,8 +71,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: no-repeat center/cover;
-  height: 100vh;
+  background: black;
+  height: 110vh;
+  margin-top: -150px;
 `;
 
 const Review = styled.div`
@@ -76,8 +85,9 @@ const StyledInput = styled.textarea`
   display: flex;
   height: 300px;
   width: 500px;
-  border: 2px solid black;
-  border-radius: 10px;
+  outline: 3px solid white;
+  border: 3px solid black;
+
   padding: 20px;
   line-height: 30px;
   font-size: 20px;
@@ -85,9 +95,15 @@ const StyledInput = styled.textarea`
   font-family: sans-serif;
   resize: none;
   margin-right: 20px;
-  &:focus {
-    outline: none;
-  }
+`;
+
+const Title = styled.h1`
+  display: flex;
+  justify-content: center;
+  color: white;
+  height: 110px;
+  font-size: 46px;
+  margin-bottom: -15px;
 `;
 
 const StyledButton = styled.button`
@@ -95,12 +111,13 @@ const StyledButton = styled.button`
   margin-top: 375px;
   align-items: center;
   background-color: black;
+  outline: 1px solid white;
   justify-content: center;
   color: white;
   height: 50px;
   width: 200px;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 2px solid black;
   font-size: 18px;
   font-family: sans-serif;
   font-weight: bold;
@@ -108,8 +125,8 @@ const StyledButton = styled.button`
   margin-right: 20px;
   order: 2;
   &:hover {
-    background-color: #799056;
     transition: all 0.4s ease-in-out;
+    transform: scale(1.1);
   }
 `;
 

@@ -4,7 +4,7 @@ import Profile from "./Profile";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import image from "./Assets/karsten.jpg";
+import image from "./Assets/homepage.jpg";
 
 const Homepage = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -17,15 +17,15 @@ const Homepage = () => {
 
   return (
     <>
-      <LoginButton />
       <Wrapper style={{ backgroundImage: `url(${image})` }}>
         <Text>
           <Title>
             <h1>MyCellar</h1>
           </Title>
           <Heading>
-            <h2>Store, Learn, Enjoy.</h2>
+            <h1>Store, Learn, Enjoy.</h1>
           </Heading>
+          <LoginButton />
         </Text>
       </Wrapper>
     </>
@@ -47,13 +47,14 @@ const Text = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+  margin-left: 175px;
 `;
 
 const Title = styled.div`
   color: #faf9f6;
   margin-bottom: 20px;
   text-align: center;
-  font-size: 46px;
+  font-size: 42px;
   margin-bottom: 40px;
 `;
 

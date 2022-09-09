@@ -11,9 +11,9 @@ import WishListButton from "./WishList/WishListButton";
 import image1 from "./Assets/bg1.2.jpg";
 import image2 from "./Assets/BG-part4.jpg";
 import image3 from "./Assets/Bg3.2.jpg";
-import image4 from "./Assets/bg1.0.jpg";
+import image4 from "./Assets/newBG1.jpg";
 import Arrow from "./Arrow/Arrow";
-import { slide as Menu } from "react-burger-menu";
+import Navbar from "./Menu/SideBar";
 
 const Profile = () => {
   let navigate = useNavigate();
@@ -39,6 +39,8 @@ const Profile = () => {
           backgroundImage: `url(${image4})`,
         }}
       >
+        <Navbar />
+
         <div style={{ display: "flex", justifyContent: "center" }}></div>
         <Title>my cellar</Title>
         <WishListButton />
@@ -92,6 +94,7 @@ const Profile = () => {
           </Zoom>
         </Wines>
       </BG3>
+      <Footer></Footer>
     </>
   );
 };
@@ -102,6 +105,13 @@ const Wrapper1 = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
+`;
+
+const Nav = styled.span`
+  position: absolute;
+  font-size: 30px;
+  top: 50px;
+  left: 50px;
 `;
 
 const BG1 = styled.div`
@@ -152,7 +162,7 @@ const Wines = styled.div`
 const Pairing = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 80px;
 `;
 
 const ArrowDiv = styled.div``;
@@ -162,7 +172,7 @@ const Title = styled.h1`
   font-size: 80px;
   display: flex;
   justify-content: center;
-  margin-top: 130px;
+  margin-top: 50px;
 `;
 
 const Add = styled.span`
@@ -231,7 +241,12 @@ const Mine = styled.span`
 const SearchBarWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 20px;
+`;
+
+const Footer = styled.div`
+  height: 50px;
+  background-color: black;
 `;
 
 export default Profile;

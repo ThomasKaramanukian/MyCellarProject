@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import WishListButton from "../WishList/WishListButton";
 import SearchBar from "../SearchBar/SearchBar";
+import Navbar from "../Menu/SideBar";
 
 const Wine = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -54,12 +55,13 @@ const Wine = () => {
 
   return (
     <>
+      <Navbar />
       <Wrapper>
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            marginBottom: "100px",
+            marginBottom: "50px",
             backgroundColor: "black",
           }}
         >
@@ -97,7 +99,7 @@ const List = styled.div`
 `;
 
 const Title = styled.h1`
-  margin-top: 110px;
+  margin-top: 110;
   display: flex;
   justify-content: center;
   color: white;

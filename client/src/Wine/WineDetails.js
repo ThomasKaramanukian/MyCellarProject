@@ -8,6 +8,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import styled from "styled-components";
 import AddToWishList from "../WishList/Heart";
 import WineInfo from "./WineInfo";
+import Navbar from "../Menu/SideBar";
 
 const WineDetails = () => {
   const [wineDetails, setWineDetails] = useState();
@@ -35,6 +36,7 @@ const WineDetails = () => {
 
   return (
     <>
+      <Navbar />
       <div style={{ backgroundColor: "black", height: "100vh" }}>
         <UserIcon />
         <LogoutButton />
@@ -121,13 +123,14 @@ const VarietalInfo = styled.div`
   margin-left: 30px;
   margin-right: 10px;
   line-height: 22px;
+  margin-bottom: 10px;
 `;
 
 const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 200px;
+  margin-top: 100px;
   flex-direction: column;
   height: 100%;
   width: 60vh;
@@ -145,6 +148,7 @@ const Country = styled.span`
   justify-content: space-between;
   width: 300px;
   text-align: justify;
+  margin-bottom: 10px;
 `;
 const Region = styled.span`
   display: flex;
@@ -152,6 +156,7 @@ const Region = styled.span`
   justify-content: space-between;
   width: 300px;
   text-align: justify;
+  margin-bottom: 10px;
 `;
 const Year = styled.span`
   display: flex;
@@ -159,6 +164,7 @@ const Year = styled.span`
   justify-content: space-between;
   width: 300px;
   text-align: justify;
+  margin-bottom: 10px;
 `;
 const Type = styled.span`
   display: flex;
@@ -166,6 +172,7 @@ const Type = styled.span`
   justify-content: space-between;
   width: 300px;
   text-align: justify;
+  margin-bottom: 10px;
 `;
 const Varietal = styled.span`
   display: flex;

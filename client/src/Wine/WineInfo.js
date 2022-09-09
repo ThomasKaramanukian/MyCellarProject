@@ -39,7 +39,7 @@ const WineInfo = () => {
             fontSize: "18px",
             marginTop: "10px",
             marginLeft: "10px",
-            width: "490px",
+            width: "390px",
           }}
           type="text"
           placeholder="Type in a varietal..."
