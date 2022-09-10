@@ -92,7 +92,7 @@ const StyledInput = styled.textarea`
   line-height: 30px;
   font-size: 20px;
   color: black;
-  font-family: sans-serif;
+  font-family: "Abril Fatface", cursive;
   resize: none;
   margin-right: 20px;
 `;

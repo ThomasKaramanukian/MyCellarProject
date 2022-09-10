@@ -39,7 +39,7 @@ const WineInfo = () => {
             fontSize: "18px",
             marginTop: "10px",
             marginLeft: "10px",
-            width: "390px",
+            width: "520px",
           }}
           type="text"
           placeholder="Type in a varietal..."
@@ -62,7 +62,7 @@ const WineInfo = () => {
 
 const TextArea = styled.div`
   height: 150px;
-  width: 61vh;
+  width: 75vh;
   border: 3px solid black;
   outline: 3px solid white;
   background-color: white;

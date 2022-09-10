@@ -173,7 +173,7 @@ const BigWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: black;
-  height: 100vh;
+  height: 95vh;
   width: 100%;
   overflow: none;
 `;

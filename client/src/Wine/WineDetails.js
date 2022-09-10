@@ -50,13 +50,15 @@ const WineDetails = () => {
           {/* <SearchBar /> */}
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Content style={{ textTransform: "capitalize" }}>
-            <Name>{wineDetails.text.name}</Name>
-            <Country>
+          <Content>
+            <Name style={{ textTransform: "capitalize" }}>
+              {wineDetails.text.name}
+            </Name>
+            <Country style={{ textTransform: "capitalize" }}>
               <span>Country:</span>
               {wineDetails.text.country}
             </Country>
-            <Region>
+            <Region style={{ textTransform: "capitalize" }}>
               <span>Region:</span>
               {wineDetails.text.region}
             </Region>
@@ -64,18 +66,21 @@ const WineDetails = () => {
               <span>Year:</span>
               {wineDetails.text.year}
             </Year>
-            <Type>
+            <Type style={{ textTransform: "capitalize" }}>
               <span>Type:</span>
               {wineDetails.text.type}
             </Type>
-            <Varietal>
+            <Varietal style={{ textTransform: "capitalize" }}>
               <span>Varietal:</span>
               {wineDetails.text.varietal}
             </Varietal>
 
             <Review>
               <span
-                style={{ marginRight: "20px", textDecoration: "underline" }}
+                style={{
+                  marginRight: "20px",
+                  textDecoration: "underline",
+                }}
               >
                 Review:{" "}
               </span>
@@ -101,7 +106,7 @@ const Review = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 61vh;
+  width: 75vh;
   margin-top: 50px;
   margin-left: 20px;
   font-size: 16px;
